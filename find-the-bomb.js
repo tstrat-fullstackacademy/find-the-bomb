@@ -216,51 +216,32 @@ YOU DO NOT NEED TO CHANGE ANY OF THE CODE BELOW
 
 let firstDefused = firstBomb.indexOf('bomb') < 0
 let seconDefused = secondBomb.indexOf('bomb') < 0
-let thirdDefused = thirdAndFourthBombs.filter((e) => e === 'bomb').length === 0
-let fifthDefused = fifthBomb.split('bomb')[0] === fifthBomb
-let sixthDefused = sixthBomb.split('bmob')[0] === sixthBomb
+let thirdDefused = thirdAndFourthBombs.filter(e=> e ==='bomb').length === 0
+let fifthDefused = fifthBomb.split("bomb")[0] === fifthBomb
+let sixthDefused = sixthBomb.split("bmob")[0] === sixthBomb
 let seventhDefused = !seventhBomb.hidden
-let eighthDefused =
-  Object.values(specialBomb()).filter((e) => e === 'bomb').length === 0
-let ninthDefused = !ninthBomb
-  .map((row) => row.filter((e) => e === 'bomb').length)
-  .filter((e) => e === 1).length
-let tenthDefused =
-  !tenthBomb[0].favoriteThings[2].secret &&
-  tenthBomb[1].coding.languages.indexOf('bomb') < 0 &&
-  !Object.keys(tenthBomb[2].hiddenStash).includes('bomb')
-function specialBomb() {
-  return { lockerNumber: 12345, secret1234: 'bomb', falseKey: 'dud' }
-}
+let eighthDefused = Object.values(eighthBomb).filter(e=> e==='bomb').length ===0
+let ninthDefused = !ninthBomb.map(row => row.filter(e=> e==='bomb').length).filter(e => e===1).length
+let tenthDefused = !tenthBomb[0].favoriteThings[2].secret && tenthBomb[1].coding.languages.indexOf('bomb') < 0 && !Object.keys(tenthBomb[2].hiddenStash).includes('bomb')
+function specialBomb(){ return { lockerNumber: 12345, secret1234: 'bomb', falseKey: 'dud'}}
 
 function logger(bombs) {
-  let done = true
-  for (let i = 0; i < bombs.length; i++) {
+  let done = true;
+  for (let i = 0; i < bombs.length;i++) {
     if (!bombs[i]) {
       done = false
     }
     if (i == 2) {
       console.log('Bombs #3 & #4 Defused?', bombs[i])
-    } else {
-      console.log(`Bomb #${i + 1} Defused? `, bombs[i])
+    }
+    else {
+      console.log(`Bomb #${i > 2? i+2: i+1} Defused? `, bombs[i])
     }
   }
 
   if (done) {
-    console.log(
-      '\nCONGRATULATIONS!!! ALL THE BOMBS ARE DISABLED!\nTHANKS FOR YOUR HELP!'
-    )
+    console.log('\nCONGRATULATIONS!!! ALL THE BOMBS ARE DISABLED!\nTHANKS FOR YOUR HELP!')
   }
 }
 
-logger([
-  firstDefused,
-  seconDefused,
-  thirdDefused,
-  fifthDefused,
-  sixthDefused,
-  seventhDefused,
-  eighthDefused,
-  ninthDefused,
-  tenthDefused,
-])
+logger([firstDefused, seconDefused, thirdDefused, fifthDefused, sixthDefused, seventhDefused, eighthDefused, ninthDefused, tenthDefused])
